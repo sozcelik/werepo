@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>we-frontend</artifactId>
+		<groupId>com.oyea.ebiz</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>we-frontend-ui</artifactId>
+	<packaging>war</packaging>
+	<name>frontend-ui</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oyea.ebiz</groupId>
+			<artifactId>we-frontend-api</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oyea.ebiz</groupId>
+			<artifactId>we-frontend-impl</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>we-frontend-ui</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>${project.parent.basedir}/../we-core/we-core-api/target/</directory>
+							<includes>
+								<include>we-core-api-1.0-SNAPSHOT.jar</include>
+							</includes>
+							<targetPath>WEB-INF/lib</targetPath>
+						</resource>
+						<resource>
+							<directory>${project.parent.basedir}/../we-core/we-core-impl/target/</directory>
+							<includes>
+								<include>we-core-impl-1.0-SNAPSHOT.jar</include>
+							</includes>
+							<targetPath>WEB-INF/lib</targetPath>
+						</resource>
+					</webResources>
+					<archive>
+						<manifestEntries>
+							<Class-Path>modules</Class-Path>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
